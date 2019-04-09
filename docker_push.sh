@@ -32,7 +32,6 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 # in additional commands like deployment of new Elasticbeanstalk version
 
 # making sure correct region is set
-aws configure set default.region ap-south-1
 
 # Push image to ECR
 ###################
@@ -40,7 +39,7 @@ aws configure set default.region ap-south-1
 # I'm speculating it obtains temporary access token
 # it expects aws access key and secret set
 # in environmental vars
-eval $(aws ecr get-login --no-include-email)
+# eval $(aws ecr get-login --no-include-email)
 
 # update latest version
 docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}
