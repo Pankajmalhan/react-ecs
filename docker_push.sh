@@ -12,6 +12,7 @@
 # parameterising it to make it more obvious how its constructed
 pip install --user awscli
 export PATH=$PATH:$HOME/.local/bin
+$(aws ecr get-login --no-include-email --region ap-south-1)
 
 REGISTRY_URL=806107407018.dkr.ecr.ap-south-1.amazonaws.com
 # this is most likely namespaced repo name like myorg/veryimportantimage
