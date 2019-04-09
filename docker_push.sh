@@ -10,6 +10,9 @@
 # the registry should have been created already
 # you could just paste a given url from AWS but I'm
 # parameterising it to make it more obvious how its constructed
+pip install --user awscli
+export PATH=$PATH:$HOME/.local/bin
+
 REGISTRY_URL=806107407018.dkr.ecr.ap-south-1.amazonaws.com
 # this is most likely namespaced repo name like myorg/veryimportantimage
 SOURCE_IMAGE="react-app"
@@ -36,7 +39,7 @@ aws configure set default.region ap-south-1
 # I'm speculating it obtains temporary access token
 # it expects aws access key and secret set
 # in environmental vars
-$(aws ecr get-login --no-include-email)
+eval $(aws ecr get-login --no-include-email)
 
 # update latest version
 docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}
