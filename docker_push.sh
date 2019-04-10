@@ -60,7 +60,7 @@ docker push ${TARGET_IMAGE_LATEST}
 #aws ecs stop-task --cluster react-cluster --task 226698f6-0315-47ea-9443-b0f2cacf563f
 # aws ecs update-service --region ap-south-1 --cluster react-cluster --service react-container-service  --task-definition first-run-task-definition
 # aws ecs update-service --force-new-deployment --service react-container-service  
-# aws ecs stop-task --cluster react-cluster --task 62e18339-ffa5-4578-b7e1-78e31c56b2ff
+# aws ecs stop-task --cluster react-cluster --task a2f3a67a-2dd8-4128-beba-61b457b030f0
 
 #ecs-deploy -c react-cluster -n react-container-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com/react-app:latest
 #aws ecs update-service  --cluster react-cluster --service react-container-service --task-definition first-run-task-definition --desired-count 1
@@ -71,4 +71,5 @@ NEW_CONTAINER_DEFINTIION=$(echo first-run-task-definition | python $CI_PROJECT_D
 echo "Registering new container definition..."
 aws ecs register-task-definition --region ap-south-1 --family first-run-task-definition --container-definitions "${NEW_CONTAINER_DEFINTIION}"
 echo "Updating the service..."
-aws ecs update-service --region ap-south-1 --cluster react-cluster --service react-container-service --task-definition first-run-task-definition
+#aws ecs update-service --region ap-south-1 --cluster react-cluster --service react-container-service --task-definition first-run-task-definition
+aws ecs stop-task --cluster react-cluster --task a2f3a67a-2dd8-4128-beba-61b457b030f0
