@@ -46,3 +46,4 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 docker build -t ${SOURCE_IMAGE_LATEST} .
 docker tag ${SOURCE_IMAGE_LATEST} ${TARGET_IMAGE_LATEST}
 docker push ${TARGET_IMAGE_LATEST}
+aws ecs update-service --region ap-south-1 --cluster react-cluster --service react-container-service  --task-definition first-run-task-definition
