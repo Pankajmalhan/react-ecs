@@ -46,4 +46,3 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 docker build -t ${SOURCE_IMAGE_LATEST} .
 docker tag ${SOURCE_IMAGE_LATEST} ${TARGET_IMAGE_LATEST}
 docker push ${TARGET_IMAGE_LATEST}
-ecs-deploy -c react-cluster-08-04 -n react-conatiner-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com:latest
