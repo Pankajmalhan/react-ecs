@@ -12,6 +12,17 @@
 # parameterising it to make it more obvious how its constructed
 pip install --user awscli
 export PATH=$PATH:$HOME/.local/bin
+
+# install necessary dependency for ecs-deploy
+add-apt-repository ppa:eugenesan/ppa
+apt-get update
+apt-get install jq -y
+
+# install ecs-deploy
+curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
+  sudo tee -a /usr/bin/ecs-deploy
+sudo chmod +x /usr/bin/ecs-deploy
+
 $(aws ecr get-login --no-include-email --region ap-south-1)
 
 REGISTRY_URL=806107407018.dkr.ecr.ap-south-1.amazonaws.com
@@ -51,5 +62,5 @@ docker push ${TARGET_IMAGE_LATEST}
 # aws ecs update-service --force-new-deployment --service react-container-service  
 # aws ecs stop-task --cluster react-cluster --task 62e18339-ffa5-4578-b7e1-78e31c56b2ff
 
-
-aws ecs update-service  --cluster react-cluster --service react-container-service --task-definition first-run-task-definition --desired-count 1
+ecs-deploy -c react-cluster -n react-container-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com/react-app:latest
+#aws ecs update-service  --cluster react-cluster --service react-container-service --task-definition first-run-task-definition --desired-count 1
