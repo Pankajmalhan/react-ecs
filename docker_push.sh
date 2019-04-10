@@ -49,4 +49,7 @@ docker push ${TARGET_IMAGE_LATEST}
 #aws ecs stop-task --cluster react-cluster --task 226698f6-0315-47ea-9443-b0f2cacf563f
 # aws ecs update-service --region ap-south-1 --cluster react-cluster --service react-container-service  --task-definition first-run-task-definition
 # aws ecs update-service --force-new-deployment --service react-container-service  
-aws ecs stop-task --cluster react-cluster --task 62e18339-ffa5-4578-b7e1-78e31c56b2ff
+# aws ecs stop-task --cluster react-cluster --task 62e18339-ffa5-4578-b7e1-78e31c56b2ff
+
+
+aws ecs update-service  --cluster react-cluster --service react-container-service --task-definition first-run-task-definition --desired-count 1
