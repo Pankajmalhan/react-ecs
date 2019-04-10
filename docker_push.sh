@@ -17,6 +17,7 @@ $(aws ecr get-login --no-include-email --region ap-south-1)
 REGISTRY_URL=806107407018.dkr.ecr.ap-south-1.amazonaws.com
 # this is most likely namespaced repo name like myorg/veryimportantimage
 SOURCE_IMAGE="react-app"
+SOURCE_IMAGE_LATEST="${SOURCE_IMAGE}:latest"
 # using it as there will be 2 versions published
 TARGET_IMAGE="${REGISTRY_URL}/react-app"
 # lets make sure we always have access to latest image
@@ -42,6 +43,7 @@ VERSION="${TIMESTAMP}-${TRAVIS_COMMIT}"
 # eval $(aws ecr get-login --no-include-email)
 
 # update latest version
-docker tag ${SOURCE_IMAGE} ${TARGET_IMAGE_LATEST}
+docker build -t ${SOURCE_IMAGE_LATEST} .
+docker tag ${SOURCE_IMAGE_LATEST} ${TARGET_IMAGE_LATEST}
 docker push ${TARGET_IMAGE_LATEST}
 ecs-deploy -c react-cluster-08-04 -n react-conatiner-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com:latest
