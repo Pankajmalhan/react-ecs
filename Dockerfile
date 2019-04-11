@@ -10,8 +10,6 @@ COPY ./ ./
 
 RUN  ["npm","run","build"]
 
-RUN ["chmod", "+x", "/bin/ecs-deploy.sh"]
-
 FROM nginx
 
 EXPOSE 80
