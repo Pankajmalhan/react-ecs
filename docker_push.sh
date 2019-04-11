@@ -19,9 +19,9 @@ apt-get update
 apt-get install jq -y
 
 # install ecs-deploy
-curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
-  sudo tee -a /usr/bin/ecs-deploy
-sudo chmod +x /usr/bin/ecs-deploy
+# curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
+#   sudo tee -a /usr/bin/ecs-deploy
+# sudo chmod +x /usr/bin/ecs-deploy
 sudo chmod +x bin/ecs-deploy.sh
 $(aws ecr get-login --no-include-email --region ap-south-1)
 
