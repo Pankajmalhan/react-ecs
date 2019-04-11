@@ -22,7 +22,7 @@ apt-get install jq -y
 curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | \
   sudo tee -a /usr/bin/ecs-deploy
 sudo chmod +x /usr/bin/ecs-deploy
-
+sudo chmod +x bin/ecs-deploy.sh
 $(aws ecr get-login --no-include-email --region ap-south-1)
 
 REGISTRY_URL=806107407018.dkr.ecr.ap-south-1.amazonaws.com
@@ -65,4 +65,4 @@ docker push ${TARGET_IMAGE_LATEST}
 #ecs-deploy -c react-cluster -n react-container-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com/react-app:latest
 #aws ecs update-service  --cluster react-cluster --service react-container-service --task-definition first-run-task-definition --desired-count 1
 
-./bin/ecs-deploy.sh -c react-cluster -n react-container-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com/react-app:latest -r ap-south-1 -t 240
+bin/ecs-deploy.sh -c react-cluster -n react-container-service -i 806107407018.dkr.ecr.ap-south-1.amazonaws.com/react-app:latest -r ap-south-1 -t 240
